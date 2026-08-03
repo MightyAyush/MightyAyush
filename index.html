@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayush | Portfolio</title>
+    <meta name="description" content="Portfolio of Ayush (MightyAyush) - Coder, Python, Golang, Node.js, Game Dev, and DevOps Expert.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.60.0/phaser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .code-font { font-family: 'Fira Code', monospace; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 overflow-x-hidden selection:bg-emerald-500 selection:text-slate-950">
+
+    <div id="weather-bg" class="fixed inset-0 pointer-events-none z-0 transition-colors duration-1000"></div>
+
+    <header class="relative z-10 flex flex-col items-center justify-center min-h-screen text-center px-4">
+        <div id="hero-content" class="transition-all duration-300">
+            <h1 class="text-6xl md:text-8xl font-extrabold tracking-tight mb-4 bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-500 bg-clip-text text-transparent">
+                Ayush
+            </h1>
+            <p class="code-font text-emerald-400 text-xl md:text-2xl mb-8">@MightyAyush</p>
+            <a href="https://t.me/MightyAyush" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 bg-sky-500 hover:bg-sky-600 text-white font-semibold rounded-full shadow-lg shadow-sky-500/25 transition-all transform hover:-translate-y-1">
+                <i class="fab fa-telegram text-2xl"></i>
+                <span>Connect on Telegram</span>
+            </a>
+        </div>
+        <div class="absolute bottom-10 animate-bounce text-slate-400">
+            <i class="fas fa-chevron-down text-2xl"></i>
+        </div>
+    </header>
+
+    <main class="relative z-10 max-w-6xl mx-auto px-4 py-20 space-y-32">
+        <section class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl font-bold mb-6 text-emerald-400 flex items-center gap-3">
+                    <i class="fas fa-terminal"></i> Tech Arsenal & Expertise
+                </h2>
+                <p class="text-slate-300 leading-relaxed mb-6 text-lg">
+                    Passionate coder and nature lover bridging the gap between raw hardware, complex backend architectures, and immersive digital worlds.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <span class="px-4 py-2 bg-slate-900 border border-slate-800 rounded-lg code-font text-sm text-emerald-300">Python</span>
+                    <span class="px-4 py-2 bg-slate-900 border border-slate-800 rounded-lg code-font text-sm text-cyan-300">Golang</span>
+                    <span class="px-4 py-2 bg-slate-900 border border-slate-800 rounded-lg code-font text-sm text-green-300">Node.js</span>
+                    <span class="px-4 py-2 bg-slate-900 border border-slate-800 rounded-lg code-font text-sm text-yellow-300">Database Management</span>
+                    <span class="px-4 py-2 bg-slate-900 border border-slate-800 rounded-lg code-font text-sm text-purple-300">DSA Vagera</span>
+                </div>
+            </div>
+            <div class="bg-slate-900/50 border border-slate-800 p-6 rounded-2xl backdrop-blur-md">
+                <h3 class="text-xl font-bold mb-4 text-cyan-400 flex items-center gap-2">
+                    <i class="fas fa-cubes"></i> Domain Specialization
+                </h3>
+                <ul class="space-y-4 text-slate-300">
+                    <li class="flex items-start gap-3">
+                        <i class="fas fa-gamepad text-emerald-400 mt-1"></i>
+                        <div>
+                            <strong class="text-white block">Game Development</strong>
+                            <span class="text-sm text-slate-400">Building interactive experiences with modern engines and libraries like Phaser.js.</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fas fa-server text-cyan-400 mt-1"></i>
+                        <div>
+                            <strong class="text-white block">DevOps Engineering</strong>
+                            <span class="text-sm text-slate-400">Automating pipelines, managing cloud infrastructure, and ensuring zero downtime.</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="bg-slate-900/40 border border-slate-800/80 rounded-3xl p-8 backdrop-blur-md">
+            <h2 class="text-3xl font-bold mb-6 text-center text-emerald-400">Interactive Playground</h2>
+            <p class="text-center text-slate-400 mb-8">Powered by Matter.js & Phaser.js physics simulation.</p>
+            <div id="physics-container" class="w-full h-96 bg-slate-950 rounded-xl border border-slate-800 overflow-hidden relative flex items-center justify-center">
+                <span class="text-slate-600 code-font text-sm">Physics Engine Initializing...</span>
+            </div>
+        </section>
+    </main>
+
+    <footer class="relative z-10 text-center py-8 border-t border-slate-900 text-slate-500 text-sm">
+        <p>&copy; 2026 Ayush (MightyAyush). All rights reserved.</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const heroContent = document.getElementById('hero-content');
+            const weatherBg = document.getElementById('weather-bg');
+
+            if (scrollY > 100) {
+                let opacity = Math.max(0, 1 - (scrollY - 100) / 300);
+                heroContent.style.opacity = opacity;
+                heroContent.style.transform = `translateY(${scrollY * 0.2}px)`;
+            } else {
+                heroContent.style.opacity = 1;
+                heroContent.style.transform = 'translateY(0)';
+            }
+
+            if (scrollY < 400) {
+                weatherBg.style.background = 'radial-gradient(circle at 50% 20%, rgba(16, 185, 129, 0.08), transparent 50%)';
+            } else if (scrollY < 900) {
+                weatherBg.style.background = 'radial-gradient(circle at 50% 20%, rgba(6, 182, 212, 0.08), transparent 50%)';
+            } else {
+                weatherBg.style.background = 'radial-gradient(circle at 50% 20%, rgba(59, 130, 246, 0.08), transparent 50%)';
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const container = document.getElementById('physics-container');
+            container.innerHTML = '';
+
+            const { Engine, Render, Runner, Bodies, Composite, Mouse, MouseConstraint, Constraint } = Matter;
+
+            const engine = Engine.create();
+            const world = engine.world;
+
+            const render = Render.create({
+                element: container,
+                engine: engine,
+                options: {
+                    width: container.clientWidth,
+                    height: container.clientHeight,
+                    wireframes: false,
+                    background: '#020617'
+                }
+            });
+
+            Render.run(render);
+            const runner = Runner.create();
+            Runner.run(runner, engine);
+
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+
+            const ground = Bodies.rectangle(width / 2, height + 30, width, 60, { isStatic: true, render: { fillStyle: '#1e293b' } });
+            const leftWall = Bodies.rectangle(-30, height / 2, 60, height, { isStatic: true, render: { fillStyle: '#1e293b' } });
+            const rightWall = Bodies.rectangle(width + 30, height / 2, 60, height, { isStatic: true, render: { fillStyle: '#1e293b' } });
+            const ceiling = Bodies.rectangle(width / 2, -30, width, 60, { isStatic: true, render: { fillStyle: '#1e293b' } });
+
+            Composite.add(world, [ground, leftWall, rightWall, ceiling]);
+
+            const colors = ['#10b981', '#06b6d4', '#3b82f6', '#8b5cf6'];
+            for (let i = 0; i < 15; i++) {
+                const x = width / 2 + (Math.random() - 0.5) * 200;
+                const y = 50 + i * 15;
+                const body = Bodies.polygon(x, y, 6, 20, {
+                    render: { fillStyle: colors[Math.floor(Math.random() * colors.length)] }
+                });
+                Composite.add(world, body);
+            }
+
+            const mouse = Mouse.create(render.canvas);
+            const mouseConstraint = MouseConstraint.create(engine, {
+                mouse: mouse,
+                constraint: {
+                    stiffness: 0.2,
+                    render: { visible: false }
+                }
+            });
+            Composite.add(world, mouseConstraint);
+            render.mouse = mouse;
+
+            window.addEventListener('resize', () => {
+                if(container) {
+                    render.canvas.width = container.clientWidth;
+                    render.canvas.height = container.clientHeight;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
